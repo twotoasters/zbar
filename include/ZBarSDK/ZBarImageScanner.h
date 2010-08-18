@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------
-//  Copyright 2010 (c) Jeff Brown <spadix@users.sourceforge.net>
+//  Copyright 2009 (c) Jeff Brown <spadix@users.sourceforge.net>
 //
 //  This file is part of the ZBar Bar Code Reader.
 //
@@ -21,23 +21,31 @@
 //  http://sourceforge.net/projects/zbar
 //------------------------------------------------------------------------
 
-#import <ZBarSDK/ZBarImage.h>
-#import <CoreVideo/CoreVideo.h>
+#import <Foundation/Foundation.h>
+#import "zbar.h"
+#import "ZBarImage.h"
 
-// ZBarImage referring to a CVPixelBuffer.  used internally to handle
-// asynchronous conversion to UIImage
+#ifdef __cplusplus
+using namespace zbar;
+#endif
 
-@interface ZBarCVImage
-    : ZBarImage
+// Obj-C wrapper for ZBar image scanner
+
+@interface ZBarImageScanner : NSObject
 {
-    CVPixelBufferRef pixelBuffer;
-    void *rgbBuffer;
-    NSInvocationOperation *conversion;
+    zbar_image_scanner_t *scanner;
 }
 
-- (void) waitUntilConverted;
+@property (nonatomic) BOOL enableCache;
+@property (readonly, nonatomic) ZBarSymbolSet *results;
 
-@property (nonatomic) CVPixelBufferRef pixelBuffer;
-@property (nonatomic, readonly) void *rgbBuffer;
+// decoder configuration
+- (void) parseConfig: (NSString*) configStr;
+- (void) setSymbology: (zbar_symbol_type_t) symbology
+               config: (zbar_config_t) config
+                   to: (int) value;
+
+// image scanning interface
+- (NSInteger) scanImage: (ZBarImage*) image;
 
 @end
