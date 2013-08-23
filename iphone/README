@@ -21,13 +21,14 @@ and libzbar.a and revert any related build settings.
 
 To add the SDK to an Xcode project:
 
-   1. Drag ZBarSDK into your Xcode project.
-   3. Add these system frameworks to your project:
-      * AVFoundation.framework (weak)
-      * CoreMedia.framework (weak)
-      * CoreVideo.framework (weak)
-      * QuartzCore.framework
-      * libiconv.dylib
+	1. Run 'rake build:lib' to build the ZBarSDK folder
+   	2. Drag ZBarSDK into your Xcode project.
+   	3. Add these system frameworks to your project:
+		* AVFoundation.framework (weak)
+      	* CoreMedia.framework (weak)
+      	* CoreVideo.framework (weak)
+      	* QuartzCore.framework
+      	* libiconv.dylib
 
 Documentation
 -------------

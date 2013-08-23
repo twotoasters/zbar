@@ -29,5 +29,5 @@ DerivedData
 Gemfile.lock
 
 # Built SDK
-ZBarSDK
-ZBarSDK/*
+iphone/ZBarSDK
+iphone/ZBarSDK/*
